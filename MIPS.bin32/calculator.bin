@@ -1,0 +1,78 @@
+.data
+    prompt_num1: .asciiz "\nEnter the first integer: "
+    prompt_op: .asciiz "\nEnter the operator: "
+    prompt_num2: .asciiz "\nEnter the second integer: "
+    output: .asciiz "\nThe result is: "
+    integer_division: "\nHope you weren't expecting a floating point number!"
+
+.text
+
+main:
+    #
+    001000 11101 11101  1111 1111 1001 1001
+    #
+    001100 00000 01010  0000 0000 0010 1011
+    001100 00000 01111  0000 0000 0010 1101
+    001100 00000 11000  0000 0000 0010 1010
+    001100 00000 11001  0000 0000 0010 1111
+
+    #
+    #
+    001101 00000 00010  0000 0000 0000 0100
+    #
+    #
+    001111 00000 00001  hi_prompt_num1       001101 00001 00100  lo_prompt_num1
+    000000 00000 00000  00000 00000  001100
+    101011 11101 00010  0000 0000 0000 0000
+    000000 00000 00000  00000 00000  001100
+    100011 11101 01001  0000 0000 0000 0000
+    100011 11101 01010  0000 0000 0000 0000
+    001101 00000 00010  0000 0000 0000 0101
+    001111 00000 00001  hi_prompt_op         001101 00001 00100  lo_prompt_op
+    000000 00000 00000  00000 00000  001100
+    001101 00000 00010  0000 0000 0000 1100
+    000000 00000 00000  00000 00000  001100
+    101011 11101 00010  1111 1111 1100 1010
+    100011 11101 01010  1111 1111 1100 1010
+    #
+    000010              which_operator
+
+    which_operator:
+        000101 01010 01000  not_addition
+        000010              basic_addition
+
+    not_addition:
+        000101 01010 01111  not_subtraction
+        000010              basic_subtraction
+
+    not_subtraction:
+        000101 01010 11000  basic_division
+        00010               basic_multiplication
+
+    basic_addition:
+        000000 01001 01011  01100 00000  100000
+        000010                    display_output
+
+    basic_subtraction:
+        000000 01001 01011  01100  00000 100010
+        000010                    display_output
+
+    basic_multiplication:
+        000000 00000 01011  01001 00000  011000
+        000000 00000 00000  01100 00000  010010
+        000000 00000 00000  01101 00000  010000
+        000100 00000 01101  display_output
+        000010              display_output64
+
+    basic_division:
+        000000 00000 01011  01001 00000  011010
+        000000 00000 00000  01100 00000  010010
+        000000 00000 00000  01101 00000  010000
+        000101 00000 01101  display_output
+        00010               display_output64
+
+    display_output:
+
+
+
+
